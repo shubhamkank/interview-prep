@@ -155,10 +155,10 @@ public class LongestPalindromicSubstring {
     }
 
     public static void main(String[] args) {
-        //System.out.println(longestPalindrome3("babad"));
-        //System.out.println(longestPalindrome3("cbbd"));
-        //System.out.println(longestPalindrome3(""));
-        //System.out.println(longestPalindrome3(null));
+        System.out.println(longestPalindrome3("babad"));
+        System.out.println(longestPalindrome3("cbbd"));
+        System.out.println(longestPalindrome3(""));
+        System.out.println(longestPalindrome3(null));
 
         System.out.println(longestPalindrome4("babcbabcbaccba"));
     }
