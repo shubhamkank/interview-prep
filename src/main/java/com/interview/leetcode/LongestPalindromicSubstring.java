@@ -71,7 +71,7 @@ public class LongestPalindromicSubstring {
         }
 
         int n = s.length();
-        int maxLen = 0, startIdx = 0;
+        int maxLen = 1, startIdx = 0;
         int low, high;
 
         for(int i = 1; i < s.length(); i++) {
@@ -103,10 +103,63 @@ public class LongestPalindromicSubstring {
         return s.substring(startIdx, startIdx + maxLen);
     }
 
+    private static String preProcess(String s) {
+        int n = s.length();
+        if(n == 0) {
+            return "^$";
+        }
+        StringBuilder ret = new StringBuilder("^");
+        for(int i = 0; i < n; i++) {
+            ret.append("#").append(s.charAt(i));
+        }
+        ret.append("#$");
+        return ret.toString();
+    }
+
+    /**
+     * Manacher's Algorithm
+     * Time complexity: O(n)
+     * Reference: https://www.youtube.com/watch?v=nbTSfrEfo6M
+     * https://articles.leetcode.com/longest-palindromic-substring-part-ii/
+     * https://www.youtube.com/watch?v=V-sEwsca1ak
+     */
+    public static String longestPalindrome4(String s) {
+        String newS = preProcess(s);
+        int n = newS.length();
+
+        int []p = new int[n];
+        int c = 0, r = 0;
+
+        for(int i = 1; i < n-1; i++) {
+            int iMirror = 2 * c - i;
+            p[i] = i < r ? Math.min(r - i, p[iMirror]) : 0;
+
+            while (newS.charAt(i + 1 + p[i]) == newS.charAt(i - 1 - p[i])) {
+                p[i]++;
+            }
+
+            if(i + p[i] > r) {
+                c = i;
+                r = i + p[i];
+            }
+        }
+
+        int maxLen = 0, centreIdx = 0;
+        for(int i = 1; i < n-1; i++) {
+            if(p[i] > maxLen) {
+                maxLen = p[i];
+                centreIdx = i;
+            }
+        }
+        return s.substring((centreIdx - maxLen - 1)/2, (centreIdx - maxLen - 1)/2 + maxLen);
+    }
+
     public static void main(String[] args) {
-        System.out.println(longestPalindrome3("babad"));
-        System.out.println(longestPalindrome3("cbbd"));
-        System.out.println(longestPalindrome3(""));
-        System.out.println(longestPalindrome3(null));
+        //System.out.println(longestPalindrome3("babad"));
+        //System.out.println(longestPalindrome3("cbbd"));
+        //System.out.println(longestPalindrome3(""));
+        //System.out.println(longestPalindrome3(null));
+
+        System.out.println(longestPalindrome4("babcbabcbaccba"));
     }
 }
