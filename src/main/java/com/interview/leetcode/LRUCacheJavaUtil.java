@@ -16,6 +16,7 @@ public class LRUCacheJavaUtil extends LinkedHashMap<Integer, Integer> {
     public int get(int key) {
         return getOrDefault(key, -1);
     }
+
     public void set(int key, int value) {
         put(key, value);
     }
