@@ -22,6 +22,9 @@ public class FizzBuzz {
         return res;
     }
 
+    //Extendable code using Java lambdas
+    //https://leetcode.com/problems/fizz-buzz/discuss/89936/Java-Fuzz-Buzz-Follow-up(no-if-else-and-extendable)
+
     public static void main(String[] args) {
         fizzBuzz(15).forEach(System.out::println);
     }
