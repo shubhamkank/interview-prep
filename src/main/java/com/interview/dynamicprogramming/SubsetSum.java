@@ -2,6 +2,13 @@ package com.interview.dynamicprogramming;
 
 public class SubsetSum {
 
+    /* Time complexity: O(n * T), Space complexity: O(n * T)
+       SS(i, t) = true iff some subset of X[i...n] sums to t
+       SS(i, t) = true if t = 0
+       SS(i, t) = false if t < 0 or i > n
+       SS(i, t) = SS(i+1, t) if t < X[i]
+       SS(i, t) = SS(i+1, t) V SS(i+1, t-X[i]) otherwise
+    */
     public static boolean isSubsetSum(int [] nums, int target) {
         int n = nums.length;
         boolean [][] dp = new boolean[n+1][target+1];
@@ -31,7 +38,7 @@ public class SubsetSum {
         System.out.println(isSubsetSum(new int[]{8, 6, 7, 5, 3, 10, 9}, 3));
         System.out.println(isSubsetSum(new int[]{8, 6, 7, 5, 3, 10, 9}, 48));
         System.out.println(isSubsetSum(new int[]{8, 6, 7, 5, 3, 10, 9}, 49));
-        
+
         System.out.println(isSubsetSum(new int[]{3, 34, 4, 12, 5, 2}, 9));
         System.out.println(isSubsetSum(new int[]{11, 6, 5, 1, 7, 13, 12}, 15));
     }
