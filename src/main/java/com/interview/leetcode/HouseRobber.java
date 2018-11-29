@@ -16,6 +16,19 @@ public class HouseRobber {
         return maxMoney[n-1];
     }
 
+    /* Time complexity: O(n), Space complexity: O(1) */
+    public static int rob2(int[] nums) {
+        int prevMax = 0;
+        int curMax = 0;
+
+        for(int num : nums) {
+            int temp = curMax;
+            curMax = Math.max(prevMax + num, curMax);
+            prevMax = temp;
+        }
+        return curMax;
+    }
+
     public static void main(String[] args) {
         System.out.println(rob(new int[]{1, 2, 3, 1}));
         System.out.println(rob(new int[]{2, 7, 9, 3, 1}));
