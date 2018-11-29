@@ -8,13 +8,12 @@ public class HouseRobber {
              return 0;
         }
 
-        int result = Integer.MIN_VALUE;
-        int[] maxMoney = new int[nums.length];
-        for(int i = 0; i < nums.length; i++) {
+        int n = nums.length;
+        int[] maxMoney = new int[n];
+        for(int i = 0; i < n; i++) {
             maxMoney[i] = Math.max(nums[i] + (i-2 < 0 ? 0 : maxMoney[i-2]), (i-1 < 0 ? 0 : maxMoney[i-1]));
-            result = Math.max(result, maxMoney[i]);
         }
-        return result;
+        return maxMoney[n-1];
     }
 
     public static void main(String[] args) {
