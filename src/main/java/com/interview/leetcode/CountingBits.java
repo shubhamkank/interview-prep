@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class CountingBits {
 
-    /* Time complexity: O(n * sizeof(integer)) */
+    /* Time complexity: O(n * sizeof(integer)), Space complexity: O(n) */
     public static int[] countBits(int num) {
         int[] result = new int[num+1];
 
@@ -23,9 +23,24 @@ public class CountingBits {
         return count;
     }
 
+    /* Time complexity: O(n), Space complexity: O(n) */
+    public static int[] countBits2(int num) {
+        int[] result = new int[num+1];
+        result[0] = 0;
+
+        for(int i = 1; i <= num; i++) {
+            result[i] = 1 + result[i & i-1];
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
-        Arrays.stream(countBits(2)).forEach(x -> System.out.print(x + " "));
+        Arrays.stream(countBits2(2)).forEach(x -> System.out.print(x + " "));
         System.out.println();
-        Arrays.stream(countBits(5)).forEach(x -> System.out.print(x + " "));
+        Arrays.stream(countBits2(5)).forEach(x -> System.out.print(x + " "));
+        System.out.println();
+        Arrays.stream(countBits2(0)).forEach(x -> System.out.print(x + " "));
+        System.out.println();
+        Arrays.stream(countBits2(1)).forEach(x -> System.out.print(x + " "));
     }
 }
