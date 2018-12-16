@@ -8,6 +8,9 @@ public class MaximalRectangle {
        Sub-problem: Area of tallest rectangle which includes element (i, j)
      */
     public static int maximalRectangle(char[][] matrix) {
+        if(matrix.length == 0) {
+            return 0;
+        }
         int m = matrix.length;
         int n = matrix[0].length;
 
