@@ -103,23 +103,40 @@ public class LargestRectangleHistogram {
         return maxArea;
     }
 
-    /* Stack based approach II
+    /* Dynamic Programming
        Time complexity: O(n)
        Space complexity: O(n) - worst case - sorted array
     */
-    public static int largestRectangleArea5(int[] height) {
-        int len = height.length;
-        Stack<Integer> s = new Stack<Integer>();
+    public static int largestRectangleArea5(int[] heights) {
+        if(heights == null || heights.length == 0) {
+            return 0;
+        }
+
         int maxArea = 0;
-        for(int i = 0; i <= len; i++){
-            int h = (i == len ? 0 : height[i]);
-            if(s.isEmpty() || h >= height[s.peek()]){
-                s.push(i);
-            }else{
-                int tp = s.pop();
-                maxArea = Math.max(maxArea, height[tp] * (s.isEmpty() ? i : i - 1 - s.peek()));
-                i--;
+        int[] lessFromLeft = new int[heights.length];
+        int[] lessFromRight = new int[heights.length];
+
+        lessFromLeft[0] = -1;
+        lessFromRight[heights.length-1] = heights.length;
+
+        for(int i = 1; i < heights.length; i++) {
+            int p = i - 1;
+            while(p >= 0 && heights[p] >= heights[i]) {
+                p = lessFromLeft[p];
             }
+            lessFromLeft[i] = p;
+        }
+
+        for(int i = heights.length-2; i >= 0; i--) {
+            int p = i + 1;
+            while(p < heights.length && heights[p] >= heights[i]) {
+                p = lessFromRight[p];
+            }
+            lessFromRight[i] = p;
+        }
+
+        for(int i = 0; i < heights.length; i++) {
+            maxArea = Math.max(maxArea, heights[i] * (lessFromRight[i] - lessFromLeft[i] - 1));
         }
         return maxArea;
     }
