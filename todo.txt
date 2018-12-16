@@ -1,0 +1,2 @@
+1. Segment tree:
+https://leetcode.com/problems/largest-rectangle-in-histogram/discuss/28941/segment-tree-solution-just-another-idea-onlogn-solution
