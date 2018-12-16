@@ -1,6 +1,7 @@
 package com.interview.leetcode;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 public class MaximalRectangle {
 
@@ -71,6 +72,54 @@ public class MaximalRectangle {
         return maxArea;
     }
 
+    /* Time complexity: O(m * n), Space complexity: O(n)
+     */
+    public static int maximalRectangle2(char[][] matrix) {
+        if(matrix.length == 0) {
+            return 0;
+        }
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        int[] heights = new int[n];
+        int maxArea = 0;
+
+        for(int i = 0; i < m; i++) {
+            for(int j = 0; j < n; j++) {
+                if(matrix[i][j] == '1') {
+                    heights[j]++;
+                } else {
+                    heights[j] = 0;
+                }
+            }
+            maxArea = Math.max(maxArea, longestRectangleInHistogram(heights));
+        }
+        return maxArea;
+    }
+
+    private static int longestRectangleInHistogram(int[] heights) {
+        int maxArea = 0;
+        Stack<Integer> stack = new Stack<>();
+        int i = 0;
+
+        while(i < heights.length) {
+            if(stack.isEmpty() || heights[i] >= heights[stack.peek()]) {
+                stack.push(i);
+                i++;
+            } else {
+                int top = stack.pop();
+                maxArea = Math.max(maxArea, heights[top] * (stack.isEmpty() ? i : i - 1 - stack.peek()));
+            }
+        }
+
+        while(!stack.isEmpty()) {
+            int top = stack.pop();
+            maxArea = Math.max(maxArea, heights[top] * (stack.isEmpty() ? i : i - 1 - stack.peek()));
+        }
+
+        return maxArea;
+    }
+
     public static void main(String[] args) {
         char[][] matrix1 = new char[][]{
                 {'0', '0', '0', '1', '0', '0', '0'},
@@ -78,7 +127,7 @@ public class MaximalRectangle {
                 {'0', '1', '1', '1', '1', '1', '0'}
         };
 
-        System.out.println(maximalRectangle(matrix1));
+        System.out.println(maximalRectangle2(matrix1));
 
         char[][] matrix2 = new char[][]{
                 {'1', '0', '1', '0', '0'},
@@ -87,6 +136,6 @@ public class MaximalRectangle {
                 {'1', '0', '0', '1', '0'}
         };
 
-        System.out.println(maximalRectangle(matrix2));
+        System.out.println(maximalRectangle2(matrix2));
     }
 }
