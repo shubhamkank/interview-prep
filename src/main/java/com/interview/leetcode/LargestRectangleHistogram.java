@@ -104,8 +104,11 @@ public class LargestRectangleHistogram {
     }
 
     /* Dynamic Programming
-       Time complexity: O(n)
-       Space complexity: O(n) - worst case - sorted array
+       area(i) = height[i] * (r-l-1)
+       maxArea = max(area(i)) i = 0 to n-1
+       l: the first coordinate of the bar to the left with height h[l] < h[i].
+       r: the first coordinate of the bar to the right with height h[r] < h[i]
+       Time complexity: O(n), Space complexity: O(n)
     */
     public static int largestRectangleArea5(int[] heights) {
         if(heights == null || heights.length == 0) {
