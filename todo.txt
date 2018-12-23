@@ -2,3 +2,5 @@
 https://leetcode.com/problems/largest-rectangle-in-histogram/discuss/28941/segment-tree-solution-just-another-idea-onlogn-solution
 2. Breadth-First Search
 3. Depth-First Search
+4. Top-down vs Bottom-up Approach
+https://stackoverflow.com/questions/6164629/dynamic-programming-and-memoization-bottom-up-vs-top-down-approaches
