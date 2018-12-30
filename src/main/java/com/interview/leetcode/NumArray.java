@@ -15,7 +15,7 @@ public class NumArray {
         //populateDPMatrix(nums);
     }
 
-    private void populateDPMatrix(int[] nums) {
+    /*private void populateDPMatrix(int[] nums) {
         int n = nums.length;
         for(int i = 0; i < n; i++) {
             for(int j = i; j < n; j++) {
@@ -26,15 +26,15 @@ public class NumArray {
                 }
             }
         }
-    }
+    }*/
 
     public int sumRange(int i, int j) {
         return sum[j + 1] - sum[i];
     }
 
-    public int sumRange2(int i, int j) {
+    /*public int sumRange2(int i, int j) {
         return dp[i][j];
-    }
+    }*/
 
     public static void main(String[] args) {
         NumArray numArray = new NumArray(new int[] {-2, 0, 3, -5, 2, -1});
