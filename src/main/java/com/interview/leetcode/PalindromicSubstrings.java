@@ -1,5 +1,7 @@
 package com.interview.leetcode;
 
+import java.util.Arrays;
+
 public class PalindromicSubstrings {
 
     /* Dynamic Programming
@@ -22,7 +24,7 @@ public class PalindromicSubstrings {
                 count++;
             }
         }
-        
+
         //Length >= 3
         for(int k = 3; k <= n; k++) {
             for(int i = 0; i < n - k + 1; i++) {
@@ -60,14 +62,62 @@ public class PalindromicSubstrings {
         return count;
     }
 
-    //Manacher's Algorithm
+    /* Manacher's Algorithm
+       Time complexity: O(n), Space complexity: O(n)
+       References:
+       https://www.youtube.com/watch?v=nbTSfrEfo6M
+       https://algs4.cs.princeton.edu/53substring/Manacher.java.html
+       https://www.hackerearth.com/practice/algorithms/string-algorithm/manachars-algorithm/tutorial/ */
     public static int countSubstrings3(String s) {
-        return 0;
+        char[] t = preprocess(s);
+        int[] p = new int[t.length];
+
+        int center = 0, right = 0;
+        for(int i = 1; i < t.length - 1; i++) {
+            //Also, can be written as 2 * centre - i
+            int mirror = center - (i - center);
+
+            //If the next candidate for center lies within the right boundary of the current palindrome,
+            //copy the mirror value. (r - i) is for the case where len[mirror] goes beyond the left boundary
+            if(i < right) {
+                p[i] = Math.min(right - i, p[mirror]);
+            }
+
+            //Attempt to expand palindrome centered at i
+            while(t[i + (1 + p[i])] == t[i - (1 + p[i])]) {
+                p[i]++;
+            }
+
+            //If palindrome centered at i expands past right, adjust center based on expanded palindrome
+            if(i + p[i] > right) {
+                center = i;
+                right = i + p[i];
+            }
+        }
+
+        return (Arrays.stream(p).sum() + s.length()) / 2;
+    }
+
+    /* Transform s into t.
+       For example, if s = "abba", then t = "$#a#b#b#a#@"
+       the # are interleaved to avoid even/odd-length palindromes uniformly
+       $ and @ are prepended and appended to each end to avoid bounds checking */
+    private static char[] preprocess(String s) {
+        char[] t = new char[s.length() * 2 + 3];
+        t[0] = '$';
+        t[s.length() * 2 + 2] = '@';
+
+        for(int i = 0; i < s.length(); i++) {
+            t[2 * i + 1] = '#';
+            t[2 * i + 2] = s.charAt(i);
+        }
+        t[s.length() * 2 + 1] = '#';
+        return t;
     }
 
     public static void main(String[] args) {
-        System.out.println(countSubstrings("abc"));
-        System.out.println(countSubstrings("aaa"));
-        System.out.println(countSubstrings("babab"));
+        System.out.println(countSubstrings3("abc"));
+        System.out.println(countSubstrings3("aaa"));
+        System.out.println(countSubstrings3("babab"));
     }
 }
