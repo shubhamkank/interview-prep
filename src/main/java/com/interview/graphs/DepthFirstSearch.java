@@ -1,6 +1,7 @@
 package com.interview.graphs;
 
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class DepthFirstSearch {
 
@@ -59,7 +60,26 @@ public class DepthFirstSearch {
             }
         }
 
-        //TODO: Iterative implementation
+        /* Iterative implementation
+           Time complexity: O(V + E), Space complexity: O(V) */
+        public void DFSIterative(int v) {
+            boolean[] visited = new boolean[V];
+
+            Stack<Integer> stack = new Stack<>();
+            stack.push(v);
+
+            while(!stack.isEmpty()) {
+                int x = stack.pop();
+                visited[x] = true;
+                System.out.print(x + " ");
+
+                for(int w : adj[x]) {
+                    if(!visited[w]) {
+                        stack.push(w);
+                    }
+                }
+            }
+        }
 
         private void DFSUtil(int v, boolean[] visited) {
             visited[v] = true;
@@ -74,18 +94,21 @@ public class DepthFirstSearch {
     }
 
     public static void main(String[] args) {
-        Graph g = new Graph(4);
-        g.addEdge(0, 1);
-        g.addEdge(0, 2);
-        g.addEdge(1, 2);
-        g.addEdge(2, 0);
-        g.addEdge(2, 3);
-        g.addEdge(3, 3);
-        System.out.println(g);
+        Graph g1 = new Graph(4);
+        g1.addEdge(0, 1);
+        g1.addEdge(0, 2);
+        g1.addEdge(1, 2);
+        g1.addEdge(2, 0);
+        g1.addEdge(2, 3);
+        g1.addEdge(3, 3);
+        System.out.println(g1);
 
-        g.DFS(2);
+        g1.DFS(2);
         System.out.print("\n");
 
-        g.DFSAll();
+        g1.DFSIterative(2);
+        System.out.print("\n");
+
+        g1.DFSAll();
     }
 }
