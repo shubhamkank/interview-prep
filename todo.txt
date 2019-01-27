@@ -4,3 +4,33 @@ https://leetcode.com/problems/largest-rectangle-in-histogram/discuss/28941/segme
 3. Depth-First Search
 4. Top-down vs Bottom-up Approach
 https://stackoverflow.com/questions/6164629/dynamic-programming-and-memoization-bottom-up-vs-top-down-approaches
+5. Amortized complexity
+6. NP complete vs NP-Hard
+7. Overriding equals() and hashcode()
+
+Google
+HashMap with key, value and time-limit
+https://leetcode.com/problems/couples-holding-hands/
+https://leetcode.com/problems/daily-temperatures/description/
+Implement searching in a contacts book of a phone - prefix as well as infix search
+
+
+Graphs
+1. Adjacency list, matrix, hash table representation
+2. DFS - Recursive, Iterative
+3. BFS - Recursive, Iterative
+4. Topological sort - DAG
+5. Single Source Shortest Path for DAG (including -ve weights) - O(V + E)
+6. Single source shortest paths- Dijkstra's Algorithm (Greedy) - non negative weights - min heap, fibonacci heap, array
+7. Single source shortest paths - Bellman-Ford Algorithm (Dynamic Programming)
+8. All pair shortest paths - Floyd-Warshall Algorithm
+9. Minimum Spanning Tree Algorithm - Bruvska Algorithm (Undirected Graph?)
+10. Minimum Spanning Tree Algorithm - Kruskal's Algorithm (Undirected Graph?)
+11. Minimum Spanning Tree Algorithm - Prim's Algorithm (Undirected Graph?)
+12. Union Find Data Structure
+13. Strongly Connected Components - Kosaraju's Algorithm
+14. Geometric Algorithms - Convex Hull
+15. Bipartite Graph
+
+Jeff Erickson sample graph problems with solutions:
+https://echo360.org/lesson/G_bd52f755-7604-4f87-b12f-683bbf764c4d_4d637247-b557-4c53-81ac-6a90afe5ea28_2018-04-05T11:00:00.000_2018-04-05T12:27:00.000/classroom#sortDirection=desc

@@ -10,7 +10,7 @@ public class BuySellStock4 {
        dp[k][i] = max(dp[k][i-1], max(prices[i] - prices[j] + dp[k-1][j-1]))  j = 0..i-1
        =>  dp[k][i] = max(dp[k][i-1], prices[i] - min(prices[j] - dp[k-1][j-1]))  j = 0..i-1
      */
-    public static int maxProfit4(int K, int[] prices) {
+    public static int maxProfit(int K, int[] prices) {
         if(prices == null || prices.length == 0) {
             return 0;
         }
@@ -49,9 +49,9 @@ public class BuySellStock4 {
     }
 
     public static void main(String[] args) {
-        System.out.println(maxProfit5(new int[] {3,3,5,0,0,3,1,4}));
-        System.out.println(maxProfit5(new int[] {1,2,3,4,5}));
-        System.out.println(maxProfit5(new int[] {7,6,4,3,1}));
-        System.out.println(maxProfit5(new int[] {}));
+        System.out.println(maxProfit(3, new int[] {3,3,5,0,0,3,1,4}));
+        System.out.println(maxProfit(2, new int[] {1,2,3,4,5}));
+        System.out.println(maxProfit(2, new int[] {7,6,4,3,1}));
+        System.out.println(maxProfit(2, new int[] {}));
     }
 }
