@@ -20,7 +20,21 @@ public class Graph {
         validateVertex(u);
         validateVertex(v);
         adj[u].add(v);
+        adj[v].add(u);
         E++;
+    }
+
+    public int V() {
+        return V;
+    }
+
+    public int E() {
+        return E;
+    }
+
+    public int degree(int v) {
+        validateVertex(v);
+        return adj[v].size();
     }
 
     public LinkedList<Integer> adj(int v) {
@@ -35,17 +49,26 @@ public class Graph {
 
     public String toString() {
         StringBuilder s = new StringBuilder();
-        for (int u = 0; u < V; u++) {
-            s.append(u + ": ");
-            for (int v : adj[u]) {
-                s.append(v + " ");
+        s.append(V + " vertices, " + E + " edges " + "\n");
+        for (int v = 0; v < V; v++) {
+            s.append(v + ": ");
+            for (int w : adj[v]) {
+                s.append(w + " ");
             }
             s.append("\n");
         }
         return s.toString();
     }
 
-    public int V() {
-        return V;
+    public static void main(String[] args) {
+        Graph g = new Graph(5);
+        g.addEdge(0, 1);
+        g.addEdge(0, 4);
+        g.addEdge(1, 2);
+        g.addEdge(1, 3);
+        g.addEdge(1, 4);
+        g.addEdge(2, 3);
+        g.addEdge(3, 4);
+        System.out.println(g);
     }
 }
