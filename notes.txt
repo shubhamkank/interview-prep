@@ -1,0 +1,54 @@
+Load Balancers
+
+Sticky Session - even if you visit a website multiple times you still end up with the same session object i.e same backend server
+- stored in shared storage - MySQL, NFS
+- Cookies - not just the backend servers but the load could also insert cookies
+
+Software: HAProxy (open source - also used in Flipkart), ELB (AWS), LVS
+Hardware: Cisco, Citrix
+
+DNS lookups
+- cached by OS and browser as well
+- can result in one server getting overloaded (if load balancing achieved via simple DNS entries for each server)
+
+Caching
+- html files instead of regenerating them very time via web server
+- mysql query cache
+- memcached (used by Facebook) - in memory (RAM) cache - can be run same server or different
+
+MySQL storage engines - InnoDB, MyISAM - the way in which the underlying data is stored
+InnoDB(locks - row) supports transactions as compared to MyISAM (locks - full table)
+
+Replication:
+1. Master-Slave setup
+Good for read heavy applications - example facebook during its initial days
+That is, can redirect read queries to the slaves and horizontally scale slaves - load balancing read requests
+Single point of failure for writes as it will take some time to promote a slave as master
+
+2. Master-Master setup
+2 master syncing between themselves
+
+Now, the load balancer can be a single point of failure.
+Normally, 2 load balancers - active-active setup/active-passive setup
+Send hearbeats to each other - if active one goes down, passive takes its ip address and becomes active.
+
+Partitioning:
+Example, users with names starting from A-M - some set of servers and N-Z - other set of servers
+
+High Availability
+Example, Master-Master setup
+
+Availability Zone: Regions
+Distribute loads across data centres? DNS level load balancing or geography based load balancing
+Now if the ip address of the load balancer at a particular data centre is cached and if the data centre itself goes down then
+it may take some time for the ttl of the session/cookie to expire
+
+Allow - tcp:80 (http), 443 (https), 22 (ssh)
+It is common to offload the encryption/SSL (also called SSL termination) till the load balancer and then further use decrypted data
+No need install SSL certificates in each of the servers in the topology.
+Can use higher end servers for load balancers for doing the decryption and cheaper servers further down the topology.
+
+Mysql uses tcp:3306 port number by default for queries.
+
+Principle of least privileges - only open the doors that people actually have to go throw. Otherwise you are inviting unexpected behaviour.
+So someone might take advantage of that.
