@@ -9,6 +9,7 @@ public class FloydWarshall {
        d(i, j, k) - shortest path weight from vertex i to vertex j for all intermediate vertices in the set {1, 2, .., k}
        d(i, j, k) = w(i, j) if k = 0
        d(i, j, k) = min{ d(i, j, k - 1), d(i, k, k - 1) + d(k, j, k - 1) } if k = 0
+       Assumes no negative weight cycles although if they exist we can find it
       */
     public FloydWarshall(int[][] graph) {
         int V = graph.length;
