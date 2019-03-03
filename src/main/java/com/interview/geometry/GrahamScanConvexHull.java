@@ -7,7 +7,7 @@ public class GrahamScanConvexHull {
 
     private Stack<Point2D> hull = new Stack<>();
 
-    /* Time complexity: O(nlogn) */
+    /* Time complexity: O(nlogn), Space complexity: O(n) */
     public GrahamScanConvexHull(Point2D[] points) {
         if (points == null) throw new IllegalArgumentException("argument is null");
         if (points.length == 0) throw new IllegalArgumentException("array is of length 0");
