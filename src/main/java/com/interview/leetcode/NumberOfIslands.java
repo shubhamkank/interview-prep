@@ -117,7 +117,7 @@ public class NumberOfIslands {
             return parent[i];
         }
 
-        /* Time complexity: O(alpha(n)) */
+        /* Time complexity: O(alpha(n)) - Inverse Ackermann Function */
         public void union(int i, int j) {
             int iRoot = find(i);
             int jRoot = find(j);
