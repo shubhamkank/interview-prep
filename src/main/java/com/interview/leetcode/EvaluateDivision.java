@@ -45,7 +45,7 @@ public class EvaluateDivision {
         return -1.0;
     }
 
-    /* Union find
+    /* Union find: https://leetcode.com/problems/evaluate-division/discuss/147281/Java-Union-Find-solution-faster-than-99
        Time complexity: O(e + q) e - number of equations, q - number of queries
        Space complexity: O(V) - number of vertices in the graph
      */
