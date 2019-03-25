@@ -8,7 +8,7 @@ public class FloydWarshall {
        Dynamic Programming - Bottom up approach
        d(i, j, k) - shortest path weight from vertex i to vertex j for all intermediate vertices in the set {1, 2, .., k}
        d(i, j, k) = w(i, j) if k = 0
-       d(i, j, k) = min{ d(i, j, k - 1), d(i, k, k - 1) + d(k, j, k - 1) } if k = 0
+       d(i, j, k) = min{ d(i, j, k - 1), d(i, k, k - 1) + d(k, j, k - 1) } otherwise
        Assumes no negative weight cycles although if they exist we can find it
       */
     public FloydWarshall(int[][] graph) {
@@ -35,13 +35,13 @@ public class FloydWarshall {
 
     public static void main(String[] args) {
         int INF = Integer.MAX_VALUE;
-        int graph[][] = { 
-                {0,   5,  INF, 10}, 
+        int graph[][] = {
+                {0,   5,  INF, 10},
                 {INF, 0,   3, INF},
                 {INF, INF, 0,   1},
                 {INF, INF, INF, 0}
         };
-        
+
         FloydWarshall floydWarshall = new FloydWarshall(graph);
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
