@@ -88,9 +88,6 @@ public class EvaluateDivision {
     }
 
     private static String find(Map<String, String> parent, Map<String, Double> ratio, String s) {
-        if(s == null) {
-            return null;
-        }
         if(s.equals(parent.get(s))) {
             return s;
         }
