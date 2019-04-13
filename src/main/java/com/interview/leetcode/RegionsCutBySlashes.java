@@ -2,6 +2,8 @@ package com.interview.leetcode;
 
 public class RegionsCutBySlashes {
 
+    /* Depth First Search
+       Time complexity: O(n^2), Space complexity: O(n^2) */
     public static int regionsBySlashes(String[] grid) {
         int n = grid.length;
         int[][] graph = new int[n * 3][n * 3];
@@ -44,6 +46,8 @@ public class RegionsCutBySlashes {
         dfsUtil(graph, i + 1, j);
     }
 
+    /* Union Find Data Structure
+       Time complexity: O(n^2), Space complexity: O(n^2) */
     public static int regionsBySlashes2(String[] grid) {
         int n = grid.length;
         int[][] graph = new int[n * 3][n * 3];
@@ -89,62 +93,66 @@ public class RegionsCutBySlashes {
     }
 
     public static void main(String[] args) {
-
+        System.out.println(regionsBySlashes2(new String[] {" /", "/ "}));
+        System.out.println(regionsBySlashes2(new String[] {" /", "  "}));
+        System.out.println(regionsBySlashes2(new String[] {"\\/", "/\\"}));
+        System.out.println(regionsBySlashes2(new String[] {"/\\", "\\/"}));
+        System.out.println(regionsBySlashes2(new String[] {"//", "/ "}));
     }
 
-}
+    static class UnionFind {
 
-class UnionFind {
+        private int[] parent;
+        private int[] rank;
+        private int count;
 
-    private int[] parent;
-    private int[] rank;
-    private int count;
+        public UnionFind(int[][] grid) {
+            int m = grid.length;
+            int n = grid[0].length;
+            count = 0;
+            parent = new int[m * n];
+            rank = new int[m * n];
 
-    public UnionFind(int[][] grid) {
-        int m = grid.length;
-        int n = grid[0].length;
-        count = 0;
-        parent = new int[m * n];
-        rank = new int[m * n];
-
-        for(int i = 0; i < m; i++) {
-            for(int j = 0; j < n; j++) {
-                if(grid[i][j] == 0) {
-                    parent[i * n + j] = i * n + j;
-                    count++;
+            for(int i = 0; i < m; i++) {
+                for(int j = 0; j < n; j++) {
+                    if(grid[i][j] == 0) {
+                        parent[i * n + j] = i * n + j;
+                        count++;
+                    }
+                    rank[i * n + j] = 0;
                 }
-                rank[i * n + j] = 0;
             }
         }
-    }
 
-    public int find(int i) {
-        if(parent[i] != i) {
-            parent[i] = find(parent[i]);
-        }
-        return parent[i];
-    }
-
-    public void union(int i, int j) {
-        int iRoot = find(i);
-        int jRoot = find(j);
-
-        if(iRoot == jRoot) {
-            return;
+        public int find(int i) {
+            if(parent[i] != i) {
+                parent[i] = find(parent[i]);
+            }
+            return parent[i];
         }
 
-        if(rank[iRoot] < rank[jRoot]) {
-            parent[iRoot] = jRoot;
-        } else if(rank[iRoot] > rank[jRoot]) {
-            parent[jRoot] = iRoot;
-        } else {
-            parent[jRoot] = iRoot;
-            rank[iRoot]++;
+        public void union(int i, int j) {
+            int iRoot = find(i);
+            int jRoot = find(j);
+
+            if(iRoot == jRoot) {
+                return;
+            }
+
+            if(rank[iRoot] < rank[jRoot]) {
+                parent[iRoot] = jRoot;
+            } else if(rank[iRoot] > rank[jRoot]) {
+                parent[jRoot] = iRoot;
+            } else {
+                parent[jRoot] = iRoot;
+                rank[iRoot]++;
+            }
+            count--;
         }
-        count--;
+
+        public int getCount() {
+            return count;
+        }
     }
 
-    public void getCount() {
-        return count;
-    }
 }
