@@ -4,6 +4,8 @@ import java.util.*;
 
 public class CourseSchedule {
 
+    /* Topological sort - Kahn's Algorithm (uses BFS)
+       Time complexity: O(V + E), Space complexity: O(V) */
     public static boolean canFinish(int numCourses, int[][] prerequisites) {
         List<Integer>[] graph = new LinkedList[numCourses];
         int[] indegree = new int[numCourses];
@@ -43,6 +45,8 @@ public class CourseSchedule {
         return true;
     }
 
+    /* Topological sort - DFS
+       Time complexity: O(V + E), Space complexity: O(V) */
     public static boolean canFinish2(int numCourses, int[][] prerequisites) {
         Map<Integer, Set<Integer>> graph = new HashMap<>();
         Map<Integer, Integer> visited = new HashMap<>();
