@@ -64,6 +64,8 @@ public class IsGraphBipartite {
         return true;
     }
 
+    //https://leetcode.com/problems/is-graph-bipartite/discuss/176266/Clean-and-easy-unionfind-in-JAVA
+
     public static void main(String[] args) {
         System.out.println(isBipartite(new int[][] {{1,3}, {0,2}, {1,3}, {0,2}}));
         System.out.println(isBipartite(new int[][] {{1,2,3}, {0,2}, {0,1,3}, {0,2}}));
