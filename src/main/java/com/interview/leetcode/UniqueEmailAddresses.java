@@ -33,6 +33,7 @@ public class UniqueEmailAddresses {
 
         for (String email : emails) {
             StringBuilder sb = new StringBuilder();
+
             for (int i = 0; i < email.length(); i++) {
                 char ch = email.charAt(i);
                 switch (ch) {
