@@ -50,7 +50,7 @@ public class EvaluateDivision {
        Space complexity: O(V) - number of vertices in the graph
      */
     public static double[] calcEquation2(String[][] equations, double[] values, String[][] queries) {
-        Map<String, String> parent = new HashMap<>();  // node -> parent
+        Map<String, String> parent = new HashMap<>();// node -> parent
         Map<String, Double> ratio = new HashMap<>();   // node -> node / parent
 
         for(int i = 0; i < equations.length; i++) {
