@@ -22,7 +22,7 @@ public class GuessTheWord {
                     wordlist2.add(w);
                 }
             }
-            wordlist = wordlist2.toArray(new String[wordlist2.size()];
+            wordlist = wordlist2.toArray(new String[wordlist2.size()]);
         }
     }
 
@@ -61,7 +61,7 @@ public class GuessTheWord {
                     wordlist2.add(w);
                 }
             }
-            wordlist = wordlist2.toArray(new String[wordlist2.size()];
+            wordlist = wordlist2.toArray(new String[wordlist2.size()]);
         }
     }
 
