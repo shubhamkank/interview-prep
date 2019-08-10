@@ -63,7 +63,7 @@ public class GuessTheWord {
             }
             wordlist = wordlist2.toArray(new String[wordlist2.size()];
         }
-    }2
+    }
 
     public int match(String w1, String w2) {
         int matches = 0;
