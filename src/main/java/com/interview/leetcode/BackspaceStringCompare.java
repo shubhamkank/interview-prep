@@ -25,7 +25,7 @@ public class BackspaceStringCompare {
         return sb.toString();
     }
 
-    //Time complexity: O(m + n), Space complexity: O(m + n)
+    //Time complexity: O(m + n), Space complexity: O(1)
     public static boolean backspaceCompare2(String S, String T) {
         int i = S.length() - 1, j = T.length() - 1;
         int count1 = 0, count2 = 0;
