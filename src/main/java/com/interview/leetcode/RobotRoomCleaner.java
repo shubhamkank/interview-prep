@@ -47,10 +47,11 @@ public class RobotRoomCleaner {
 
             dfs(robot, visited, newX, newY, newDir);
 
+            //backtracking; move the robot to its original position and facing next direction
             robot.turnRight();
             robot.turnRight();
             robot.move();
-            robot.turnLeft();
+            robot.turnLeft(); //optimisation instead of doing 3 turn right ops
         }
     }
 
