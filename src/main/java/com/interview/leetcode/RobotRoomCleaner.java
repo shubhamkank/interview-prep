@@ -5,6 +5,7 @@ import java.util.Set;
 
 public class RobotRoomCleaner {
 
+    //Time complexity: O(rows * cols)
     public void cleanRoom(Robot robot) {
         Set<String> visited = new HashSet<>();
         dfs(robot, visited, 0, 0, 0);
