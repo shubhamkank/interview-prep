@@ -139,7 +139,7 @@ class NumMatrix2 {
 
 class NumMatrix3 {
 
-    TreeNode root;
+    TreeNode root; //Segment tree: https://github.com/mission-peace/interview/blob/master/src/com/interview/tree/SegmentTree.java
 
     public NumMatrix3(int[][] matrix) {
         if(matrix.length == 0) {
