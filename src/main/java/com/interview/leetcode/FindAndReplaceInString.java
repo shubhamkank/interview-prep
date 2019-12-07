@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class FindAndReplaceInString {
 
+    //Time complexity: O(
     public static String findReplaceString(String S, int[] indexes, String[] sources, String[] targets) {
         int N = S.length();
         int[] match = new int[N];

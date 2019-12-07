@@ -18,6 +18,7 @@ public class MaxSubArray {
 
     /**
      * Kadane's Algorithm: maxSum[i] = max(A[i], A[i] + maxSum[i-1])
+     * It is same as Dynamic programming sub problem: max sum subarray ending at i which includes element at i
      * Time Complexity: O(n) Space Complexity: O(1)
      */
     public static int maxSubArray2(int[] nums) {
